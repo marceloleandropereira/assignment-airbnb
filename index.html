@@ -25,16 +25,19 @@
             let ulCards = document.querySelector("ul");
             data.forEach(room => {
                 if (room.property_type !== null) {
-                    let liCard = document.createElement('li');
-                    let divCard = document.createElement('div');
-                    liCard.className = "card";
-                    divCard.innerHTML = `<img src="${room.photo}" alt="${room.name}" class="image-header">`;
-                    divCard.innerHTML += `<p class="type-room">${room.property_type}</p>`;
-                    divCard.innerHTML += `<p class="name-room"><b>${room.name}</b></p>`;
-                    divCard.innerHTML += `<p class="price-room">R$ ${room.price} por noite</p>`;
-                    divCard.innerHTML += `<p class="local-room">${room.city} (${room.state})</p>`;
-                    liCard.appendChild(divCard);
-                    ulCards.appendChild(liCard);
+                    const liCard = `
+                        <li class="card">
+                            <div>
+                                <img src="${room.photo}" alt="${room.name}" class="image-header">
+                                <p class="type-room">${room.property_type}</p>
+                                <p class="name-room"><b>${room.name}</b></p>
+                                <p class="price-room">R$ ${room.price} por noite</p>
+                                <p class="local-room">${room.city} (${room.state})</p>
+                            </div>
+                        </li>
+                    `;
+
+                    ulCards.innerHTML += liCard;
                 }
             });
         })
