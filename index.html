@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="main.css" media="screen" />
+    <title>Airbnb </title>
+</head>
+<body>
+    <div class="container">
+        <h2>Airbnb do Paragua</h2>
+    </div>
+    <ul></ul>
+    <footer>
+       <!-- conteúdo footer -->
+    </footer>
+</body>
+<script>
+    const API_URL = 'http://airbnb.douglasmaia.com/api/properties';
+
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            let ulCards = document.getElementsByTagName("ul")[0];
+            data.forEach(element => {
+
+                let liCard = document.createElement('li');
+                let divCard = document.createElement('div');
+                liCard.className = "cards-room";                
+                divCard.className = "card";
+                divCard.innerHTML = `<img src="${element.photo}" alt="${element.name}" class="image-header">`;
+                divCard.innerHTML += `<p class="type-room">${element.property_type}</p>`;
+                divCard.innerHTML += `<p><b>${element.name}</b></p>`;
+                divCard.innerHTML += `<p class="price-room">R$ ${element.price} por noite</p>`;
+                divCard.innerHTML += `<p class="local-room">${element.city} (${element.state})</p>`;
+                liCard.appendChild(divCard);
+                ulCards.appendChild(liCard);
+            });
+        })
+        .catch(error => console.error(error))
+</script>
+</html>
