@@ -23,19 +23,19 @@
         .then(response => response.json())
         .then(data => {
             let ulCards = document.getElementsByTagName("ul")[0];
-            data.forEach(element => {
-
-                let liCard = document.createElement('li');
-                let divCard = document.createElement('div');
-                liCard.className = "cards-room";                
-                divCard.className = "card";
-                divCard.innerHTML = `<img src="${element.photo}" alt="${element.name}" class="image-header">`;
-                divCard.innerHTML += `<p class="type-room">${element.property_type}</p>`;
-                divCard.innerHTML += `<p><b>${element.name}</b></p>`;
-                divCard.innerHTML += `<p class="price-room">R$ ${element.price} por noite</p>`;
-                divCard.innerHTML += `<p class="local-room">${element.city} (${element.state})</p>`;
-                liCard.appendChild(divCard);
-                ulCards.appendChild(liCard);
+            data.forEach(room => {
+                if (room.property_type !== null) {
+                    let liCard = document.createElement('li');
+                    let divCard = document.createElement('div');
+                    liCard.className = "card";
+                    divCard.innerHTML = `<img src="${room.photo}" alt="${room.name}" class="image-header">`;
+                    divCard.innerHTML += `<p class="type-room">${room.property_type}</p>`;
+                    divCard.innerHTML += `<p class="name-room"><b>${room.name}</b></p>`;
+                    divCard.innerHTML += `<p class="price-room">R$ ${room.price} por noite</p>`;
+                    divCard.innerHTML += `<p class="local-room">${room.city} (${room.state})</p>`;
+                    liCard.appendChild(divCard);
+                    ulCards.appendChild(liCard);
+                }
             });
         })
         .catch(error => console.error(error))
