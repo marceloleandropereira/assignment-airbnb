@@ -22,7 +22,7 @@
     fetch(API_URL)
         .then(response => response.json())
         .then(data => {
-            let ulCards = document.getElementsByTagName("ul")[0];
+            let ulCards = document.querySelector("ul");
             data.forEach(room => {
                 if (room.property_type !== null) {
                     let liCard = document.createElement('li');
